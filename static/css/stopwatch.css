@@ -1,0 +1,38 @@
+.t-center {
+  text-align: center;
+}
+
+.stopwatch {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #dbc3a5;
+}
+
+#screen {
+  margin: 0;
+  background-color: White;
+  border-radius: 5px;
+}
+
+#screen span {
+  display: inline-block;
+  width: 85px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  margin: 10px -5px 0;
+}
+
+.buttons button {
+  flex: 1;
+  margin: 0 5px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  /* box-shadow: 0 1px 4px rgb(0, 0, 0, 0.5); */
+  /* font-weight: bold; */
+  background-color: #d8c3a5;
+}

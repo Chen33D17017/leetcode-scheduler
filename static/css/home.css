@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #efe2ba;
+  background-image: url(../img/background-2.png);
+}
+
+#container {
+  color: #000000;
+}
+
+.easy {
+  background-color: #ee4c7c;
+}
+
+.medium {
+  background-color: #9a1750;
+}
+
+.hard {
+  background-color: #5d001e;
+}
+
+#add-category {
+  font-size: 0.8rem;
+  background-color: white;
+  border: 2px dotted black;
+  border-radius: 90%;
+}
+
+#add-category:hover {
+  box-shadow: 1px 2px #000000;
+}
+
+.category-delete:link,
+.category-delete:visited {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.header-font {
+  color: white;
+  text-decoration: none;
+}
+
+.header-font:hover {
+  color: white;
+}
+
+.problem-name {
+  font-size: 2.5rem;
+}
+
+.problem-category:hover {
+  box-shadow: 1px 2px #000000;
+}
+
+.play-button {
+  border: white;
+  background-color: white;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+}
+
+.feedback {
+  border-radius: 5px;
+  color: white;
+}
+
+.feedback:hover {
+  box-shadow: 1px 2px black;
+}
+
+.type-btn {
+  border-radius: 20px;
+}
+
+.type-btn :hover {
+  box-shadow: 1px 2px black;
+}
