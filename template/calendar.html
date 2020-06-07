@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- fullcalendar -->
+    <meta charset="utf-8" />
+    <link href="../js/fullcalendar/packages/core/main.css" rel="stylesheet" />
+    <link
+      href="../js/fullcalendar/packages/daygrid/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../js/fullcalendar/packages/timegrid/main.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <!-- <script src="https://momentjs.com/downloads/moment.min.js"></script> -->
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.js'></script> -->
+    <!-- <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" /> -->
+
+    <link href="../js/fullcalendar/packages/list/main.css" rel="stylesheet" />
+    <script src="../js/fullcalendar/packages/core/main.js"></script>
+    <script src="../js/fullcalendar/packages/interaction/main.js"></script>
+    <script src="../js/fullcalendar/packages/daygrid/main.js"></script>
+    <script src="../js/fullcalendar/packages/timegrid/main.js"></script>
+    <script src="../js/fullcalendar/packages/list/main.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="../static/css/home.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/stopwatch.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="#" class="navbar-brand">Leetcode Scheduler</a>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="#" class="nav-link">Summary</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">ToDo</a></li>
+          <li class="nav-item active">
+            <a href="#" class="nav-link">Calandar</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+          <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div id="calendar" style="background-color: aliceblue;"></div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/calendar.js"></script>
+  </body>
+</html>

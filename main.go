@@ -25,11 +25,13 @@ func main() {
 	r.HandleFunc("/login", login)
 	r.HandleFunc("/signup", signup)
 	r.HandleFunc("/home", home)
+	r.HandleFunc("/calendar", calendar)
 	r.HandleFunc("/_checkUserExist", checkUserExist)
 	r.HandleFunc("/logout", logout)
 	r.HandleFunc("/addProblem/{problemID}", addProblem)
 	r.HandleFunc("/DoneProblem/{target}", doneProblem)
 	r.HandleFunc("/_getUndo", getUndo)
+	r.HandleFunc("/_getDateEvent", getDateEvent)
 	r.HandleFunc("/deleteLog/{target}", deleteLog)
 	http.Handle("/", r)
 

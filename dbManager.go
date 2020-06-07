@@ -284,3 +284,25 @@ func (dbm *dbManager) deleteLog(logID, userID int) error {
 
 	return nil
 }
+
+func (dbm *dbManager) getDateEvent(userId int) ([]DateEvent, error) {
+	rst := make([]DateEvent, 0)
+	rows, err := dbm.Query("SELECT problem_name, color, date FROM `problem_log` JOIN `leetcode_problem` ON problem_id=leetcode_problem.id JOIN `problem_level` ON leetcode_problem.level_id=problem_level.id WHERE `user_id`=?;", userId)
+	if err != nil {
+		return rst, fmt.Errorf("getDateEvent: err %s", err.Error())
+	}
+
+	defer rows.Close()
+	var catcher DateEvent
+	for rows.Next() {
+		err = rows.Scan(&catcher.Title, &catcher.BgColor, &catcher.Date)
+		catcher.AllDay = true
+		catcher.TColor = "#ffffff"
+		rst = append(rst, catcher)
+		if err != nil {
+			return rst, fmt.Errorf("getDateEvent: result err : %s", err.Error())
+		}
+	}
+
+	return rst, nil
+}

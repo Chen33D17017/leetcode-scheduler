@@ -66,7 +66,7 @@ $(document).ready(function () {
       success: function (result) {
         obj = $.parseJSON(result);
         addCard(obj);
-        rebundPlay();
+        rebund();
       },
       error: function (err) {
         $("#add-msg").text(err);
@@ -101,10 +101,10 @@ function rebund() {
     data = {};
     var elem = $(this);
     var target = $(this).attr("target");
-    console.log(target);
+    // console.log(target);
     data["level"] = $(this).text().toLowerCase();
     data["costTime"] = $(this).parent().prev("div").children("span").text();
-    console.log(data);
+    // console.log(data);
     $.ajax({
       url: `/DoneProblem/${target}`,
       contentType: "application/json;charset=UTF-8",
@@ -115,7 +115,8 @@ function rebund() {
       data: JSON.stringify(data),
       success: function (result) {
         elem.parent().parent().parent().parent().parent().parent().remove();
-        console.log("delete this block");
+        $("#reset").click();
+        // console.log("delete this block");
       },
       error: function (err) {
         $("#add-msg").text("Bad Try");
@@ -149,7 +150,7 @@ function addCard(obj) {
           }" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <div class="clearfix">
-                <a href="${obj["url"]}">
+                <a href="${obj["url"]}" target="_blank">
                   <span class="problem-name">${obj["problem_name"]}</span>
                 </a>
                 <span class="float-right">
