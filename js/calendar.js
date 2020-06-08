@@ -24,7 +24,7 @@ $.ajax({
       center: "title",
       right: "dayGridMonth,listMonth",
     },
-
+    eventLimit: true,
     navLinks: true, // can click day/week names to navigate views
     businessHours: true, // display business hours
     editable: false,
