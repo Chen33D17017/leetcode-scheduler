@@ -285,9 +285,9 @@ func (dbm *dbManager) deleteLog(logID, userID int) error {
 	return nil
 }
 
-func (dbm *dbManager) getDateEvent(userId int) ([]DateEvent, error) {
+func (dbm *dbManager) getDateEvent(userID int) ([]DateEvent, error) {
 	rst := make([]DateEvent, 0)
-	rows, err := dbm.Query("SELECT problem_name, color, date FROM `problem_log` JOIN `leetcode_problem` ON problem_id=leetcode_problem.id JOIN `problem_level` ON leetcode_problem.level_id=problem_level.id WHERE `user_id`=?;", userId)
+	rows, err := dbm.Query("SELECT problem_name, color, date FROM `problem_log` JOIN `leetcode_problem` ON problem_id=leetcode_problem.id JOIN `problem_level` ON leetcode_problem.level_id=problem_level.id WHERE `user_id`=? and date <= CURDATE() and done=1 union SELECT problem_name, color, date FROM `problem_log` JOIN `leetcode_problem` ON problem_id=leetcode_problem.id JOIN `problem_level` ON leetcode_problem.level_id=problem_level.id WHERE `user_id`=? and date > CURDATE();", userID, userID)
 	if err != nil {
 		return rst, fmt.Errorf("getDateEvent: err %s", err.Error())
 	}

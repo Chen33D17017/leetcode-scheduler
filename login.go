@@ -45,6 +45,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 				log.Printf("Store Cookie err : %s", err.Error())
 			}
 			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			return
 		}
 	}
 	err = tpl.ExecuteTemplate(w, "login.html", tpr)

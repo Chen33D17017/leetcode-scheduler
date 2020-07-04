@@ -11,7 +11,6 @@ CREATE TABLE `problem_log` (
 	`id` INT AUTO_INCREMENT,
 	`user_id` INT,
 	`problem_id` INT,
-	`problem_id` INT,
     `date` DATE,
     `review_level` INT,
     `time` CHAR(20),

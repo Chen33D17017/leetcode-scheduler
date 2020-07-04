@@ -40,7 +40,7 @@ func main() {
 	http.Handle("/js/", http.StripPrefix("/js", http.FileServer(http.Dir("js"))))
 	http.HandleFunc("/favicon.ico", favicon)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
 
 func favicon(w http.ResponseWriter, r *http.Request) {
