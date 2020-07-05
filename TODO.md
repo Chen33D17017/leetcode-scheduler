@@ -1,10 +1,8 @@
 # TODO
 
 ## TODO Page:
-
     - Warning when adding problem which already done
-    - The message when adding new problem
+    - 
+## SUMMARY PAGE
     - Number of problem are done in today
-    - Total cost time today
-    - Problem sort by date
-    -
+    - Total cost time today 

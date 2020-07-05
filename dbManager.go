@@ -198,7 +198,7 @@ func (dbm *dbManager) insertProblem(userID int, p *Problem) error {
 
 func (dbm *dbManager) getProblems(userID int) ([]Problem, error) {
 	rst := make([]Problem, 0)
-	rows, err := dbm.Query("SELECT id, problem_id, date, review_level FROM `problem_log` WHERE `user_id`=? AND `date`<=? AND `done`=False", userID, time.Now().Format(dateFormat))
+	rows, err := dbm.Query("SELECT id, problem_id, date, review_level FROM `problem_log` WHERE `user_id`=? AND `date`<=CURDATE() AND `done`=False ORDER BY DATE(date) DESC;", userID)
 	if err != nil {
 		return rst, fmt.Errorf("getProblem err: query fail: %s", err.Error())
 	}
@@ -313,6 +313,38 @@ func (dbm *dbManager) checkUserExist(email string) (int, error) {
 	err := dbm.QueryRow("SELECT COUNT(*) FROM `leetcode_user` WHERE email=?;", email).Scan(&rst)
 	if err != nil {
 		return 1, fmt.Errorf("addProblemLog err: %s", err.Error())
+	}
+	return rst, nil
+}
+
+func (dbm *dbManager) getPracticeTime(date time.Time) ([]time.Time, error) {
+	rst := make([]time.Time, 0)
+	practiceTimeFormat := "15:04:05"
+	rows, err := dbm.Query("SELECT time FROM `problem_log` WHERE `user_id`=1 AND date=? AND done=1;", date)
+	if err != nil {
+		return rst, fmt.Errorf("getPracticeTime err: query fail: %s", err.Error())
+	}
+
+	defer rows.Close()
+	var practiceTime string
+
+	for rows.Next() {
+		err = rows.Scan(&practiceTime)
+		if err != nil {
+			return rst, fmt.Errorf("getPracticeTime err: scan fail: %s", err.Error())
+		}
+
+		tmpTime, _ := time.Parse(practiceTimeFormat, practiceTime)
+		rst = append(rst, tmpTime)
+	}
+	return rst, nil
+}
+
+func (dbm *dbManager) getTotalProblem(userID int) (int, error) {
+	var rst int
+	err := dbm.QueryRow("SELECT COUNT(DISTINCT problem_id) FROM `problem_log` WHERE `user_id`=? AND done=1;", userID).Scan(&rst)
+	if err != nil {
+		return 0, err
 	}
 	return rst, nil
 }
