@@ -15,16 +15,108 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <script src="../js/utils.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/home.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/stopwatch.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/summary.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <!-- Import D3 Scale Chromatic via CDN -->
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <title>Leetcode Scheduler</title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="#" class="navbar-brand">Leetcode Scheduler</a>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a href="#" class="nav-link">Summary</a>
+          </li>
+          <li class="nav-item">
+            <a href="home" class="nav-link">ToDo</a>
+          </li>
+          <li class="nav-item">
+            <a href="calendar" class="nav-link">Calandar</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+          <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div
+      class="container mt-5 pb-5"
+      id="container"
+      style="background-color: whitesmoke;"
+    >
+      <h1 class="display-1 mt-2">Welcome, Challenger</h1>
+      <div class="row">
+        <div class="col-3">
+          <img src="../static/img/test.png" alt="user_img" class="user-img" />
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-9 user-item">
+              Name: Test
+            </div>
+            <div class="col-9 user-item">
+              Problem Remain Today: 20
+            </div>
+            <div class="col-9 user-item">
+              Problem Already Done: 30
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <p>Done Probelm in last 7 days:</p>
+          <canvas id="cost-day" width="800" height="600"></canvas>
+        </div>
+        <div class="col-md-6">
+          <p>Cost time in last 7 days:</p>
+          <canvas id="cost-month" width="800" height="600"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const bar = {
+        type: "bar",
+        chartLabelDisplay: false,
+      };
+
+      const categoryCostDay = {
+        data: [20, 2, 3, 4, 5],
+        labels: ["one", "two", "three", "four", "five"],
+      };
+
+      const colorSchemaDay = d3.schemeSet3;
+      staticColorChart(bar, "cost-day", categoryCostDay, colorSchemaDay);
+
+      const categoryCostMonth = {
+        data: [1, 2, 3, 4, 5],
+        labels: ["one", "two", "three", "four", "five"],
+      };
+      const colorSchemaMonth = d3.schemePaired;
+      staticColorChart(bar, "cost-month", categoryCostMonth, colorSchemaMonth);
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
