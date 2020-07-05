@@ -10,7 +10,7 @@ $(document).ready(function () {
       objs = $.parseJSON(result);
       for (obj of objs) {
         addCard(obj);
-        console.log(obj);
+        /* console.log(obj); */
       }
       rebund();
     },
@@ -66,6 +66,7 @@ $(document).ready(function () {
       success: function (result) {
         obj = $.parseJSON(result);
         addCard(obj);
+        $("#add-msg").text(obj.problem_name);
         rebund();
       },
       error: function (err) {
