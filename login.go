@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -102,9 +101,15 @@ func logout(w http.ResponseWriter, r *http.Request) {
 func checkUserExist(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		postData := r.FormValue("msg")
-		fmt.Printf("Receive data : %s\n", postData)
-		// TODO: check whether the user exist
-		w.Write([]byte("OK"))
+		rst, err := dbm.checkUserExist(postData)
+		if err != nil {
+			log.Printf("Fail to check email on database: %s\n", err.Error())
+		}
+		if rst > 0 {
+			w.Write([]byte("Not OK"))
+		} else {
+			w.Write([]byte("OK"))
+		}
 	}
 }
 

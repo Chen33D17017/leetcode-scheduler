@@ -307,3 +307,12 @@ func (dbm *dbManager) getDateEvent(userID int) ([]DateEvent, error) {
 
 	return rst, nil
 }
+
+func (dbm *dbManager) checkUserExist(email string) (int, error) {
+	var rst int
+	err := dbm.QueryRow("SELECT COUNT(*) FROM `leetcode_user` WHERE email=?;", email).Scan(&rst)
+	if err != nil {
+		return 1, fmt.Errorf("addProblemLog err: %s", err.Error())
+	}
+	return rst, nil
+}
