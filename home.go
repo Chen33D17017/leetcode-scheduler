@@ -29,10 +29,16 @@ type DoneLog struct {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
+	if !alreadyLogin(r) {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		return
+	}
+
 	err := tpl.ExecuteTemplate(w, "home.html", nil)
 	if err != nil {
 		log.Fatalln("Home Page err")
 	}
+
 }
 
 func addProblem(w http.ResponseWriter, r *http.Request) {

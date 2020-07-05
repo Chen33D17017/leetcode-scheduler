@@ -33,6 +33,7 @@ func main() {
 	r.HandleFunc("/_getUndo", getUndo)
 	r.HandleFunc("/_getDateEvent", getDateEvent)
 	r.HandleFunc("/deleteLog/{target}", deleteLog)
+	r.HandleFunc("/", direct2Other)
 	http.Handle("/", r)
 
 	// deploy asset
@@ -45,4 +46,13 @@ func main() {
 
 func favicon(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/favicon.ico")
+}
+
+func direct2Other(w http.ResponseWriter, r *http.Request) {
+	if !alreadyLogin(r) {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	} else {
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
+	}
+	return
 }

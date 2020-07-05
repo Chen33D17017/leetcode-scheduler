@@ -15,6 +15,10 @@ type DateEvent struct {
 }
 
 func calendar(w http.ResponseWriter, r *http.Request) {
+	if !alreadyLogin(r) {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		return
+	}
 	err := tpl.ExecuteTemplate(w, "calendar.html", nil)
 	if err != nil {
 		log.Fatalln("Calendar Page err")
