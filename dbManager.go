@@ -18,6 +18,7 @@ import (
 type config struct {
 	StoreType string `json:"type"`
 	ID        string `json:"id"`
+	EndPoint  string `json:"endpoint"`
 	PW        string `json:"password"`
 	DB        string `json:"database"`
 }
@@ -50,7 +51,7 @@ func newDBManager(fileName string) (dbManager, error) {
 	if err != nil {
 		log.Fatalf("Read json err: %s", err.Error())
 	}
-	dsn := fmt.Sprintf("%s:%s@tcp(127.0.0.1:3306)/%s", configData.ID, configData.PW, configData.DB)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s", configData.ID, configData.PW, configData.EndPoint, configData.DB)
 	db, err := sql.Open(configData.StoreType, dsn)
 	if err != nil {
 		return dbManager{}, err
