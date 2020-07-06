@@ -68,6 +68,7 @@ $(document).ready(function () {
         addCard(obj);
         $("#add-msg").text(obj.problem_name);
         rebund();
+        $("#add-content").val("");
       },
       error: function (err) {
         $("#add-msg").text("Fail to Add Problem");
