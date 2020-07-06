@@ -353,9 +353,8 @@ func (dbm *dbManager) getDateDoneNum(userID int, sDate string) (int, error) {
 
 	if err != nil {
 		return 0, fmt.Errorf("dbm getDateDoneNum err : %s", err.Error())
-	} else {
-		return rst, nil
 	}
+	return rst, nil
 }
 
 func (dbm *dbManager) getUserName(userID int) (string, error) {
@@ -363,9 +362,8 @@ func (dbm *dbManager) getUserName(userID int) (string, error) {
 	err := dbm.QueryRow("SELECT user_name from `leetcode_user` WHERE `user_id`=?;", userID).Scan(&rst)
 	if err != nil {
 		return "", fmt.Errorf("dbm.getUserName err : %s", err.Error())
-	} else {
-		return rst, nil
 	}
+	return rst, nil
 }
 
 func (dbm *dbManager) getUndoNum(userID int) (int, error) {
@@ -373,7 +371,6 @@ func (dbm *dbManager) getUndoNum(userID int) (int, error) {
 	err := dbm.QueryRow("SELECT COUNT(*) FROM `problem_log` WHERE `user_id`=? AND date<=curdate() AND done=0;", userID).Scan(&rst)
 	if err != nil {
 		return 0, fmt.Errorf("dbm.getUndoNum err: %s", err.Error())
-	} else {
-		return rst, nil
 	}
+	return rst, nil
 }

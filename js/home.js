@@ -15,7 +15,7 @@ $(document).ready(function () {
       rebund();
     },
     error: function (err) {
-      $("#add-msg").text(err);
+      $("#add-msg").text("Fail to add problem, please enter the int number");
     },
   });
   // rebund();
@@ -70,7 +70,7 @@ $(document).ready(function () {
         rebund();
       },
       error: function (err) {
-        $("#add-msg").text(err);
+        $("#add-msg").text("Fail to Add Problem");
       },
     });
   });
@@ -93,7 +93,7 @@ function rebund() {
     var closeTarget = $(this).attr("close-target");
     var closeProblem = $(this).attr("close-problem");
     // console.log(closeTarget);
-    console.log(closeProblem);
+    /* console.log(closeProblem); */
     $("#delete-problem").attr("target", closeTarget);
     $("#delete-problem").attr("problem", closeProblem);
   });
