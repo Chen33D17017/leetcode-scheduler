@@ -34,6 +34,7 @@ func main() {
 	r.HandleFunc("/_getDateEvent", getDateEvent)
 	r.HandleFunc("/deleteLog/{target}", deleteLog)
 	r.HandleFunc("/", direct2Other)
+	r.HandleFunc("/summary", summary)
 	http.Handle("/", r)
 
 	// deploy asset

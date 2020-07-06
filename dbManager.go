@@ -317,12 +317,11 @@ func (dbm *dbManager) checkUserExist(email string) (int, error) {
 	return rst, nil
 }
 
-func (dbm *dbManager) getPracticeTime(date time.Time) ([]time.Time, error) {
-	rst := make([]time.Time, 0)
-	practiceTimeFormat := "15:04:05"
-	rows, err := dbm.Query("SELECT time FROM `problem_log` WHERE `user_id`=1 AND date=? AND done=1;", date)
+func (dbm *dbManager) getDateCostTime(userID int, date string) ([]string, error) {
+	rst := make([]string, 0)
+	rows, err := dbm.Query("SELECT time FROM `problem_log` WHERE `user_id`=? AND date=? AND done=1;", userID, date)
 	if err != nil {
-		return rst, fmt.Errorf("getPracticeTime err: query fail: %s", err.Error())
+		return rst, fmt.Errorf("getDateCostTime err: query fail: %s", err.Error())
 	}
 
 	defer rows.Close()
@@ -331,11 +330,10 @@ func (dbm *dbManager) getPracticeTime(date time.Time) ([]time.Time, error) {
 	for rows.Next() {
 		err = rows.Scan(&practiceTime)
 		if err != nil {
-			return rst, fmt.Errorf("getPracticeTime err: scan fail: %s", err.Error())
+			return rst, fmt.Errorf("getDateCostTime err: scan fail: %s", err.Error())
 		}
 
-		tmpTime, _ := time.Parse(practiceTimeFormat, practiceTime)
-		rst = append(rst, tmpTime)
+		rst = append(rst, practiceTime)
 	}
 	return rst, nil
 }
@@ -344,7 +342,38 @@ func (dbm *dbManager) getTotalProblem(userID int) (int, error) {
 	var rst int
 	err := dbm.QueryRow("SELECT COUNT(DISTINCT problem_id) FROM `problem_log` WHERE `user_id`=? AND done=1;", userID).Scan(&rst)
 	if err != nil {
-		return 0, err
+		return 0, fmt.Errorf("dbm getTotalProblem err: %s", err.Error())
 	}
 	return rst, nil
+}
+
+func (dbm *dbManager) getDateDoneNum(userID int, sDate string) (int, error) {
+	var rst int
+	err := dbm.QueryRow("SELECT COUNT(*) FROM `problem_log` WHERE `user_id`=? AND date =? AND done=1;", userID, sDate).Scan(&rst)
+
+	if err != nil {
+		return 0, fmt.Errorf("dbm getDateDoneNum err : %s", err.Error())
+	} else {
+		return rst, nil
+	}
+}
+
+func (dbm *dbManager) getUserName(userID int) (string, error) {
+	var rst string
+	err := dbm.QueryRow("SELECT user_name from `leetcode_user` WHERE `user_id`=?;", userID).Scan(&rst)
+	if err != nil {
+		return "", fmt.Errorf("dbm.getUserName err : %s", err.Error())
+	} else {
+		return rst, nil
+	}
+}
+
+func (dbm *dbManager) getUndoNum(userID int) (int, error) {
+	var rst int
+	err := dbm.QueryRow("SELECT COUNT(*) FROM `problem_log` WHERE `user_id`=? AND date<=curdate() AND done=0;", userID).Scan(&rst)
+	if err != nil {
+		return 0, fmt.Errorf("dbm.getUndoNum err: %s", err.Error())
+	} else {
+		return rst, nil
+	}
 }

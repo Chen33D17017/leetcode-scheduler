@@ -65,7 +65,7 @@
       id="container"
       style="background-color: whitesmoke;"
     >
-      <h1 class="display-1 mt-2">Welcome, Challenger</h1>
+      <h1 class="display-1 mt-2">Welcome Back, Challenger</h1>
       <div class="row">
         <div class="col-3">
           <img src="../static/img/test.png" alt="user_img" class="user-img" />
@@ -73,13 +73,13 @@
         <div class="col-9">
           <div class="row">
             <div class="col-9 user-item">
-              Name: Test
+              Name: {{.UserName}}
             </div>
             <div class="col-9 user-item">
-              Problem Remain Today: 20
+              Problem Remain Today: {{.RemainNum}}
             </div>
             <div class="col-9 user-item">
-              Problem Already Done: 30
+              Problem Already Done: {{.DoneNum}}
             </div>
           </div>
         </div>
@@ -103,16 +103,16 @@
       };
 
       const categoryCostDay = {
-        data: [20, 2, 3, 4, 5],
-        labels: ["one", "two", "three", "four", "five"],
+        data: {{.DateDone}},
+        labels: {{.DateLabel}},
       };
 
       const colorSchemaDay = d3.schemeSet3;
       staticColorChart(bar, "cost-day", categoryCostDay, colorSchemaDay);
 
       const categoryCostMonth = {
-        data: [1, 2, 3, 4, 5],
-        labels: ["one", "two", "three", "four", "five"],
+        data: {{.CostTimeDate}},
+        labels: {{.DateLabel}},
       };
       const colorSchemaMonth = d3.schemePaired;
       staticColorChart(bar, "cost-month", categoryCostMonth, colorSchemaMonth);
