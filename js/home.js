@@ -118,6 +118,7 @@ function rebund() {
       success: function (result) {
         elem.parent().parent().parent().parent().parent().parent().remove();
         $("#reset").click();
+        $("#target-problem").text("Please Select a Problem");
         // console.log("delete this block");
       },
       error: function (err) {
