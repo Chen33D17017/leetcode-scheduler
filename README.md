@@ -14,3 +14,17 @@ Please install the library below
 - MySQL
   - The DDL of the database is in the other/*.sql
   - To import all the problem in leetcode, please see [leetcode-parser](https://github.com/Chen33D17017/Leetcode-parser)
+
+If you want to deploy the website by yourself, add the config file after clone this repository
+
+config.json
+
+``` json
+{
+  "type": "mysql",
+  "endpoint": "mysql ipaddress",
+  "id": "mysql user name",
+  "password": "password",
+  "database": "leetcode_scheduler"
+}
+```
