@@ -14,8 +14,9 @@ Demo Video: [Demoe](https://www.dropbox.com/s/13p9q9pjjosi982/Leetcode%20Schedul
 
 - Go
   Please install the library below
-  _ [package html](https://godoc.org/golang.org/x/net/html)
-  _ [gorilla/mux](https://github.com/gorilla/mux) \* [Go MySQL Driver](https://github.com/go-sql-driver/mysql)
+  - [package html](https://godoc.org/golang.org/x/net/html)
+  - [gorilla/mux](https://github.com/gorilla/mux) -
+  - [Go MySQL Driver](https://github.com/go-sql-driver/mysql)
 - MySQL
   - The DDL of the database is in the other/\*.sql
   - To import all the problem in leetcode, please see [leetcode-parser](https://github.com/Chen33D17017/Leetcode-parser)
