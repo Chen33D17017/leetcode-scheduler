@@ -17,6 +17,7 @@ Demo Video: [Demoe](https://www.dropbox.com/s/13p9q9pjjosi982/Leetcode%20Schedul
   - [package html](https://godoc.org/golang.org/x/net/html)
   - [gorilla/mux](https://github.com/gorilla/mux) -
   - [Go MySQL Driver](https://github.com/go-sql-driver/mysql)
+
 - MySQL
   - The DDL of the database is in the other/\*.sql
   - To import all the problem in leetcode, please see [leetcode-parser](https://github.com/Chen33D17017/Leetcode-parser)
@@ -34,3 +35,5 @@ config.json
   "database": "leetcode_scheduler"
 }
 ```
+
+Also you can use the dockerfile after adding config.json file
